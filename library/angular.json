@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": "aa270bdf-b62a-450c-8831-f0ada796f1f6"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "lib-bank": {
+      "projectType": "library",
+      "root": "projects/lib-bank",
+      "sourceRoot": "projects/lib-bank/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-bank/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lib-bank/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/lib-bank/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  }
+}
