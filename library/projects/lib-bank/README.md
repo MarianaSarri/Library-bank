@@ -28,18 +28,35 @@ This command will compile your project, and the build artifacts will be placed i
 
 ### Publishing the Library
 
-Once the project is built, you can publish your library by following these steps:
+Once the project is built, you can publish your library to GitHub Packages. The package is scoped to your GitHub owner and the workspace package metadata has been updated accordingly.
 
-1. Navigate to the `dist` directory:
+1. Ensure the package is scoped (example): `@MarianaSarri/lib-bank` and `publishConfig.registry` points to the GitHub Packages registry.
 
-   ```bash
-   cd dist/lib-bank
-   ```
+2. Authenticate with GitHub Packages. Do not commit tokens to source control. Use one of these approaches:
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
+- Create a local (untracked) `.npmrc` in your user or project directory with this content (recommended for one-off publishes):
+
+```ini
+@MarianaSarri:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Set the `GITHUB_TOKEN` environment variable in your shell before publishing:
+
+```bash
+export GITHUB_TOKEN=ghp_...
+```
+
+Or use GitHub Actions to publish from CI and set the token as a secret.
+
+3. Build and publish (from the workspace root):
+
+```bash
+cd library
+npm run publish:github
+```
+
+This runs `ng build lib-bank` and then publishes the contents of `dist/lib-bank` to the configured registry.
 
 ## Running unit tests
 

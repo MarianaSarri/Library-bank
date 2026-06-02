@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["storybook__addons"]
+  },
+  "include": [
+    "../projects/lib-bank/src/**/*.stories.ts",
+    "../projects/lib-bank/src/**/*.stories.mdx",
+    "../.storybook/**/*"
+  ]
+}
